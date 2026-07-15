@@ -1,16 +1,396 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Visit Wessex</title>
-    <meta charset="utf-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visit Wessex — Wiltshire, Somerset, Dorset & Bournemouth</title>
+<meta name="description" content="Explore the old kingdom of Wessex: chalk downland, the Jurassic Coast, cathedral cities and seaside towns across Wiltshire, Somerset, Dorset and Bournemouth.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --chalk:#F3EFE3;
+    --chalk-dim:#E9E2D0;
+    --ink:#21301F;
+    --ink-soft:#2C3F29;
+    --flint:#56616B;
+    --gold:#C69A2E;
+    --clay:#9C5A36;
+    --jurassic:#35606B;
+    --jurassic-soft:#DCE7E5;
+    --max:1180px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--chalk);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.05;
+    color:inherit;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    opacity:0.72;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 32px;}
+  @media(max-width:640px){.wrap{padding:0 22px;}}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(33,48,31,0.92);
+    backdrop-filter:blur(6px);
+    color:var(--chalk);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:64px;
+  }
+  .nav-mark{
+    font-family:'Fraunces', serif; font-weight:600; font-size:19px;
+    letter-spacing:0.02em;
+  }
+  .nav-links{display:flex; gap:28px; list-style:none;}
+  .nav-links a{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase;
+    text-decoration:none; opacity:0.82; transition:opacity 0.2s;
+  }
+  .nav-links a:hover{opacity:1;}
+  @media(max-width:640px){.nav-links{gap:16px;} .nav-links a{font-size:11px;}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    background:var(--ink);
+    color:var(--chalk);
+    padding:150px 0 0;
+    overflow:hidden;
+  }
+  .hero .wrap{position:relative; z-index:2;}
+  .hero-eyebrow{color:var(--gold); margin-bottom:22px;}
+  .hero h1{
+    font-size:clamp(52px, 10vw, 128px);
+    letter-spacing:-0.01em;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:italic; font-weight:300; color:var(--gold);
+  }
+  .hero p.lede{
+    max-width:560px;
+    font-size:19px;
+    color:var(--chalk-dim);
+    margin-bottom:56px;
+  }
+  .hero-cta{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--ink); background:var(--gold);
+    padding:14px 22px; text-decoration:none;
+    border-radius:2px;
+    transition:transform 0.2s ease;
+  }
+  .hero-cta:hover{transform:translateY(-2px);}
+
+  /* contour hill motif */
+  .contours{
+    position:relative; z-index:1;
+    width:100%; height:220px; margin-top:70px;
+    display:block;
+  }
+  @media(max-width:640px){
+    .hero{padding-top:120px;}
+    .contours{height:140px; margin-top:40px;}
+  }
+
+  /* ---------- INTRO ---------- */
+  .intro{
+    padding:96px 0 88px;
+    border-bottom:1px solid rgba(33,48,31,0.12);
+  }
+  .intro .wrap{
+    display:grid;
+    grid-template-columns:220px 1fr;
+    gap:56px;
+  }
+  .intro h2{font-size:34px; max-width:260px;}
+  .intro-body{max-width:640px; font-size:18px; color:var(--ink-soft);}
+  .intro-body p + p{margin-top:16px;}
+  @media(max-width:760px){
+    .intro .wrap{grid-template-columns:1fr; gap:20px;}
+    .intro h2{max-width:none;}
+  }
+
+  /* ---------- COUNTY SECTIONS ---------- */
+  .county{
+    padding:96px 0;
+    position:relative;
+  }
+  .county .wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:64px;
+    align-items:center;
+  }
+  .county.reverse .wrap{direction:rtl;}
+  .county.reverse .wrap > *{direction:ltr;}
+  @media(max-width:800px){
+    .county .wrap{grid-template-columns:1fr; gap:36px;}
+    .county.reverse .wrap{direction:ltr;}
+  }
+
+  .county-panel{
+    aspect-ratio:4/3;
+    border-radius:3px;
+    position:relative;
+    overflow:hidden;
+    display:flex; align-items:flex-end;
+  }
+  .county-panel svg{position:absolute; inset:0; width:100%; height:100%;}
+  .county-panel .grid-ref{
+    position:relative; z-index:2;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.1em;
+    padding:16px 18px;
+    color:rgba(255,255,255,0.85);
+  }
+
+  .county h3{font-size:44px; margin:14px 0 16px;}
+  .county p.desc{font-size:17px; color:var(--flint); max-width:480px; margin-bottom:22px;}
+  .tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.04em;
+    padding:6px 12px;
+    border:1px solid currentColor;
+    border-radius:20px;
+    opacity:0.8;
+  }
+
+  .county.wiltshire{background:var(--chalk);}
+  .county.wiltshire .county-panel{background:linear-gradient(160deg,#D8CBA0,#C69A2E);}
+  .county.wiltshire .tag{color:var(--clay);}
+
+  .county.somerset{background:var(--chalk-dim);}
+  .county.somerset .county-panel{background:linear-gradient(160deg,#4C6B3E,#21301F);}
+  .county.somerset .tag{color:var(--ink-soft);}
+
+  .county.dorset{background:var(--jurassic-soft);}
+  .county.dorset .county-panel{background:linear-gradient(160deg,#7A9B95,#35606B);}
+  .county.dorset .tag{color:var(--jurassic);}
+
+  .county.bournemouth{background:var(--chalk);}
+  .county.bournemouth .county-panel{background:linear-gradient(160deg,#E8C9A0,#9C5A36);}
+  .county.bournemouth .tag{color:var(--clay);}
+
+  /* ---------- CTA ---------- */
+  .cta{
+    background:var(--ink);
+    color:var(--chalk);
+    padding:120px 0;
+    text-align:center;
+  }
+  .cta h2{
+    font-size:clamp(34px,6vw,58px);
+    max-width:680px;
+    margin:0 auto 20px;
+  }
+  .cta p{color:var(--chalk-dim); max-width:460px; margin:0 auto 40px; font-size:17px;}
+  .cta-links{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .cta .hero-cta{background:transparent; color:var(--gold); border:1px solid var(--gold);}
+  .cta .hero-cta.filled{background:var(--gold); color:var(--ink);}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ink);
+    color:rgba(243,239,227,0.55);
+    border-top:1px solid rgba(243,239,227,0.12);
+    padding:32px 0;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.05em;
+    flex-wrap:wrap; gap:12px;
+  }
+
+  :focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
 </head>
 <body>
-    <h1>Visit Wessex</h1>
 
-    <p>Discover the best of Bournemouth, Somerset, Dorset and Wiltshire.</p>
+<nav>
+  <div class="wrap">
+    <div class="nav-mark">Visit Wessex</div>
+    <ul class="nav-links">
+      <li><a href="#wiltshire">Wiltshire</a></li>
+      <li><a href="#somerset">Somerset</a></li>
+      <li><a href="#dorset">Dorset</a></li>
+      <li><a href="#bournemouth">Bournemouth</a></li>
+    </ul>
+  </div>
+</nav>
 
-    <h2>Coming Soon</h2>
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">SU 1067 4231 &nbsp;·&nbsp; ANCIENT KINGDOM, LIVING COUNTY</div>
+    <h1>Wessex<br><em>on foot,</em> not on a map.</h1>
+    <p class="lede">Alfred's old kingdom, redrawn by chalk downs, hillforts and a coastline that's been eroding into view for 185 million years. Wiltshire, Somerset, Dorset and Bournemouth — four counties, one long walk.</p>
+    <a class="hero-cta" href="#wiltshire">Start exploring ↓</a>
+  </div>
 
-    <p>Travel guides, attractions, events and hidden gems from across Wessex.</p>
+  <svg class="contours" viewBox="0 0 1200 220" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,180 C150,140 300,200 450,160 C600,120 750,190 900,150 C1050,120 1150,170 1200,150 L1200,220 L0,220 Z" fill="#2C3F29"/>
+    <path d="M0,200 C180,160 320,210 480,180 C640,150 780,205 940,175 C1080,150 1150,190 1200,175 L1200,220 L0,220 Z" fill="#263623"/>
+    <path d="M0,213 C200,190 400,215 600,198 C800,182 1000,214 1200,200 L1200,220 L0,220 Z" fill="#21301F"/>
+  </svg>
+</header>
+
+<section class="intro">
+  <div class="wrap">
+    <h2>Not on any modern census, but you'll know it when you're in it.</h2>
+    <div class="intro-body">
+      <p>Wessex was a real Anglo-Saxon kingdom, ruled from Winchester by Alfred the Great, until it dissolved into the map of England over a thousand years ago. Thomas Hardy borrowed the name for his novels and drew its boundary again — this time around chalk downland, market towns and a coast that turns up ammonites after every storm.</p>
+      <p>That's the Wessex this site follows: not an administrative region, but a way of grouping four counties that share a geology, a walking culture and a habit of naming places after what's buried under them.</p>
+    </div>
+  </div>
+</section>
+
+<section class="county wiltshire" id="wiltshire">
+  <div class="wrap">
+    <div class="county-panel">
+      <svg viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+        <circle cx="200" cy="150" r="90" fill="none" stroke="rgba(33,48,31,0.35)" stroke-width="2"/>
+        <circle cx="200" cy="150" r="60" fill="none" stroke="rgba(33,48,31,0.35)" stroke-width="2"/>
+        <circle cx="200" cy="150" r="30" fill="none" stroke="rgba(33,48,31,0.45)" stroke-width="2"/>
+        <line x1="200" y1="10" x2="200" y2="290" stroke="rgba(33,48,31,0.2)" stroke-width="1"/>
+        <line x1="20" y1="150" x2="380" y2="150" stroke="rgba(33,48,31,0.2)" stroke-width="1"/>
+      </svg>
+      <div class="grid-ref">SU 1223 4220 — Stonehenge</div>
+    </div>
+    <div>
+      <div class="eyebrow" style="color:var(--clay);">01 · CHALK &amp; STONE</div>
+      <h3>Wiltshire</h3>
+      <p class="desc">The county that gave the world Stonehenge also has Avebury, a stone circle you can walk straight through, and Salisbury's cathedral spire, the tallest in England, visible for miles across open downland. Between the monuments, it's mostly sheep, hedgerow and chalk streams.</p>
+      <div class="tags">
+        <span class="tag">Stonehenge</span>
+        <span class="tag">Avebury Circle</span>
+        <span class="tag">Salisbury Cathedral</span>
+        <span class="tag">Longleat</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="county somerset reverse" id="somerset">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" style="color:var(--ink-soft);">02 · LEVELS &amp; MYTH</div>
+      <h3>Somerset</h3>
+      <p class="desc">Glastonbury Tor rises out of the flat Somerset Levels like it's still half-submerged — which, in the old marshland before drainage, it was. Cheddar Gorge cuts 137 metres down through limestone a short drive away, and Bath's Georgian crescents sit on Roman hot springs just over the county line.</p>
+      <div class="tags">
+        <span class="tag">Glastonbury Tor</span>
+        <span class="tag">Cheddar Gorge</span>
+        <span class="tag">Exmoor</span>
+        <span class="tag">Wells Cathedral</span>
+      </div>
+    </div>
+    <div class="county-panel">
+      <svg viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,220 Q100,150 200,210 T400,190" fill="none" stroke="rgba(243,239,227,0.4)" stroke-width="2"/>
+        <path d="M0,250 Q100,190 200,240 T400,220" fill="none" stroke="rgba(243,239,227,0.3)" stroke-width="2"/>
+        <path d="M180,60 L200,20 L220,60 Q210,110 200,160 Q190,110 180,60 Z" fill="rgba(243,239,227,0.55)"/>
+      </svg>
+      <div class="grid-ref">ST 5125 3866 — Glastonbury Tor</div>
+    </div>
+  </div>
+</section>
+
+<section class="county dorset" id="dorset">
+  <div class="wrap">
+    <div class="county-panel">
+      <svg viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,180 C80,120 100,200 180,150 C220,125 200,90 260,95 C320,100 300,150 400,120 L400,300 L0,300 Z" fill="rgba(255,255,255,0.15)"/>
+        <path d="M0,210 C100,170 150,220 220,180 C280,150 320,190 400,160 L400,300 L0,300 Z" fill="rgba(255,255,255,0.1)"/>
+      </svg>
+      <div class="grid-ref">SY 8069 8027 — Durdle Door</div>
+    </div>
+    <div>
+      <div class="eyebrow" style="color:var(--jurassic);">03 · JURASSIC COAST</div>
+      <h3>Dorset</h3>
+      <p class="desc">Ninety-five miles of coastline, one for every million years the exposed cliffs represent — England's only natural World Heritage Site. Lyme Regis still gives up fossils after a spring tide, Durdle Door arches straight out of the sea, and inland it's all thatched villages and the countryside Thomas Hardy called Wessex first.</p>
+      <div class="tags">
+        <span class="tag">Durdle Door</span>
+        <span class="tag">Lyme Regis</span>
+        <span class="tag">Corfe Castle</span>
+        <span class="tag">Hardy Country</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="county bournemouth reverse" id="bournemouth">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow" style="color:var(--clay);">04 · SEVEN MILES OF SAND</div>
+      <h3>Bournemouth</h3>
+      <p class="desc">Built almost from nothing in the 1800s as a resort for sea air, Bournemouth still runs on its beach — seven miles of it, in blue-flag sand, backed by pine-lined chines that cut down from the clifftop. Sandbanks, just along the coast, is quietly one of the most expensive stretches of seafront in the world.</p>
+      <div class="tags">
+        <span class="tag">Bournemouth Beach</span>
+        <span class="tag">Sandbanks</span>
+        <span class="tag">Boscombe Pier</span>
+        <span class="tag">The Chines</span>
+      </div>
+    </div>
+    <div class="county-panel">
+      <svg viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,240 L400,240 L400,300 L0,300 Z" fill="rgba(243,239,227,0.5)"/>
+        <path d="M0,235 Q100,225 200,238 T400,230" fill="none" stroke="rgba(243,239,227,0.6)" stroke-width="3"/>
+        <path d="M0,150 Q100,130 200,155 T400,140" fill="none" stroke="rgba(243,239,227,0.25)" stroke-width="2"/>
+      </svg>
+      <div class="grid-ref">SZ 0891 9065 — Bournemouth Pier</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="wrap">
+    <h2>Four counties. One old name for all of it.</h2>
+    <p>Pick a direction and start walking — the chalk paths mostly connect anyway.</p>
+    <div class="cta-links">
+      <a class="hero-cta filled" href="#wiltshire">Plan a route</a>
+      <a class="hero-cta" href="mailto:hello@visitwessex.co.uk">Get in touch</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Visit Wessex</span>
+    <span>Wiltshire · Somerset · Dorset · Bournemouth</span>
+  </div>
+</footer>
+
 </body>
 </html>
+
