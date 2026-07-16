@@ -162,6 +162,12 @@
     display:flex; align-items:flex-end;
   }
   .county-panel svg{position:absolute; inset:0; width:100%; height:100%;}
+  .county-panel img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .county-panel::after{
+    content:"";
+    position:absolute; inset:0; z-index:1;
+    background:linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0) 55%);
+  }
   .county-panel .grid-ref{
     position:relative; z-index:2;
     font-family:'IBM Plex Mono', monospace;
@@ -253,7 +259,7 @@
 
 <header class="hero">
   <div class="wrap">
-    <div class="hero-eyebrow"ANCIENT KINGDOM, LIVING COUNTRY</div>
+    <div class="hero-eyebrow">ANCIENT KINGDOM, LIVING COUNTRY</div>
     <h1>Wessex<br><em>England's</em> birthplace</h1>
     <p class="lede">Alfred's old kingdom, redrawn by chalk downs, hillforts and a coastline that's been eroding into view for 185 million years. Wiltshire, Somerset, Dorset and Bournemouth — four counties, bought together.</p>
     <a class="hero-cta" href="#wiltshire">Start exploring ↓</a>
@@ -308,20 +314,18 @@
         <span class="tag">Exmoor</span>
         <span class="tag">Wells Cathedral</span>
       </div>
+    </div>
     <div class="county-panel">
-  <img src="niklas-weiss-W2tisCgfu8A-unsplash.jpg" alt="Somerset landscape">
-  <div class="grid-ref">ST 5125 3866 — Glastonbury Tor</div>
-</div>
+      <img src="niklas-weiss-W2tisCgfu8A-unsplash.jpg" alt="Somerset landscape">
+      <div class="grid-ref">ST 5125 3866 — Glastonbury Tor</div>
+    </div>
   </div>
 </section>
 
 <section class="county dorset" id="dorset">
   <div class="wrap">
     <div class="county-panel">
-      <svg viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,180 C80,120 100,200 180,150 C220,125 200,90 260,95 C320,100 300,150 400,120 L400,300 L0,300 Z" fill="rgba(255,255,255,0.15)"/>
-        <path d="M0,210 C100,170 150,220 220,180 C280,150 320,190 400,160 L400,300 L0,300 Z" fill="rgba(255,255,255,0.1)"/>
-      </svg>
+      <img src="belinda-fewings-TjBHu_Ga5YU-unsplash.jpg" alt="Durdle Door, Dorset">
       <div class="grid-ref">SY 8069 8027 — Durdle Door</div>
     </div>
     <div>
@@ -352,11 +356,7 @@
       </div>
     </div>
     <div class="county-panel">
-      <svg viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
-        <path d="M0,240 L400,240 L400,300 L0,300 Z" fill="rgba(243,239,227,0.5)"/>
-        <path d="M0,235 Q100,225 200,238 T400,230" fill="none" stroke="rgba(243,239,227,0.6)" stroke-width="3"/>
-        <path d="M0,150 Q100,130 200,155 T400,140" fill="none" stroke="rgba(243,239,227,0.25)" stroke-width="2"/>
-      </svg>
+      <img src="belinda-fewings-tFnQBkEdrql-unsplash.jpg" alt="Bournemouth coastline">
       <div class="grid-ref">SZ 0891 9065 — Bournemouth Pier</div>
     </div>
   </div>
